@@ -4,8 +4,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
-  Image
+  Image,
+  Button
 } from 'react-native';
 
 
@@ -37,11 +37,11 @@ class app3 extends Component {
       }
 
       if(escolhaUsuario == 'papel'){
-        resultado = 'Usuario ganhou';
+        resultado = 'Você ganhou';
       }
 
       if(escolhaUsuario == 'tesoura'){
-        resultado = 'Computador Ganhou';
+        resultado = 'Você perdeu';
       }
     }
 
@@ -51,11 +51,11 @@ class app3 extends Component {
       }
 
       if(escolhaUsuario == 'tesoura'){
-        resultado = 'Usuario ganhou';
+        resultado = 'Você ganhou';
       }
 
       if(escolhaUsuario == 'pedra'){
-        resultado = 'Computador Ganhou';
+        resultado = 'Você perdeu';
       }
     }
 
@@ -65,11 +65,11 @@ class app3 extends Component {
       }
 
       if(escolhaUsuario == 'pedra'){
-        resultado = 'Usuario ganhou';
+        resultado = 'Você ganhou';
       }
 
       if(escolhaUsuario == 'papel'){
-        resultado = 'Computador Ganhou';
+        resultado = 'Você perdeu';
       }
     }
 
@@ -80,27 +80,95 @@ class app3 extends Component {
   render() {
     return (
       <View>
-        <View>
-          <Image soucer={require('./images/jokenpo.png')}/>
+        <Topo></Topo>
+
+        <View style={styles.painelAcoes}>
+          <View style={styles.btnEscolha}>
+            <Button title="pedra" onPress={() => {this.jokenpo('pedra')}}/>
+          </View>
+          <View style={styles.btnEscolha}>  
+            <Button title="papel" onPress={() => {this.jokenpo('papel')}}/>
+          </View>  
+          <View style={styles.btnEscolha}>
+            <Button title="tesoura" onPress={() => {this.jokenpo('tesoura')}}/>
+          </View>  
         </View>
 
-        <View>
+        <View style={styles.palco}>
+          <Text style={styles.txtResultado}>{this.state.resultado}</Text>
 
+          <Icone escolha={this.state.escolhaComputador} jogador='Computador'></Icone>
+          <Icone escolha={this.state.escolhaUsuario} jogador='Usuario'></Icone>
         </View>
-
-        <View>
-        </View>
-        <Text>Escolha do computador: {this.state.escolhaComputador}</Text>
-        <Text>Escolha do Usuario: {this.state.escolhaUsuario}</Text>
-        <Text>Resultado : {this.state.resultado}</Text>
-        <Button title="pedra" onPress={() => {this.jokenpo('pedra')}}/>
-        <Button title="papel" onPress={() => {this.jokenpo('papel')}}/>
-        <Button title="tesoura" onPress={() => {this.jokenpo('tesoura')}}/>
       </View>  
     );
   }
 }
 
+class Topo extends Component{
+  render(){
+    return(
+        <View>
+          <Image source={require('./images/jokenpo.png')} />
+        </View>
+    );
+  }
+}
 
+class Icone extends Component{
+  render(){
+    if(this.props.escolha == 'pedra'){
+      return(
+        <View style={styles.txtJogador}>
+          <Text>{this.props.jogador}</Text>
+          <Image source={require('./images/pedra.png')} />
+        </View>  
+      );
+
+    }else if(this.props.escolha == 'papel'){
+      return(
+        <View style={styles.txtJogador}>
+          <Text>{this.props.jogador}</Text>
+          <Image source={require('./images/papel.png')} />
+        </View>  
+      );
+
+    }else if(this.props.escolha == 'tesoura'){
+      return(
+        <View style={styles.txtJogador}>
+          <Text>{this.props.jogador}</Text>
+          <Image source={require('./images/tesoura.png')} />
+        </View>  
+      );
+    }else{
+      return false;
+    }
+  }
+}
+
+const styles = StyleSheet.create({
+  btnEscolha: {
+    width: 90
+  },
+  painelAcoes: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10
+  },
+  palco: {
+    alignItems: 'center',
+    marginTop: 10
+  },
+  txtResultado: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: 'red',
+    height: 60
+  },
+  txtJogador: {
+    alignItems: 'center',
+    marginBottom: 20
+  }
+});
 
 AppRegistry.registerComponent('app3', () => app3);
