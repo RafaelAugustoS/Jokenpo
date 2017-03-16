@@ -8,7 +8,8 @@ import {
   Button
 } from 'react-native';
 
-
+import Topo from './src/components/topo'
+import Icone from './src/components/icone'
 
 
 class app3 extends Component {
@@ -105,46 +106,9 @@ class app3 extends Component {
   }
 }
 
-class Topo extends Component{
-  render(){
-    return(
-        <View>
-          <Image source={require('./images/jokenpo.png')} />
-        </View>
-    );
-  }
-}
 
-class Icone extends Component{
-  render(){
-    if(this.props.escolha == 'pedra'){
-      return(
-        <View style={styles.txtJogador}>
-          <Text>{this.props.jogador}</Text>
-          <Image source={require('./images/pedra.png')} />
-        </View>  
-      );
 
-    }else if(this.props.escolha == 'papel'){
-      return(
-        <View style={styles.txtJogador}>
-          <Text>{this.props.jogador}</Text>
-          <Image source={require('./images/papel.png')} />
-        </View>  
-      );
 
-    }else if(this.props.escolha == 'tesoura'){
-      return(
-        <View style={styles.txtJogador}>
-          <Text>{this.props.jogador}</Text>
-          <Image source={require('./images/tesoura.png')} />
-        </View>  
-      );
-    }else{
-      return false;
-    }
-  }
-}
 
 const styles = StyleSheet.create({
   btnEscolha: {
