@@ -4,7 +4,6 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   Button
 } from 'react-native';
 
@@ -21,16 +20,17 @@ class app3 extends Component {
   }
 
   jokenpo(escolhaUsuario){
-    var numA = Math.floor(Math.random() * 3);
-    var escolhaComputador = '';
+    const numA = Math.floor(Math.random() * 3);
+    let escolhaComputador = '';
 
     switch(numA){
       case 0: escolhaComputador = 'pedra'; break;
       case 1: escolhaComputador = 'papel'; break;
       case 2: escolhaComputador = 'tesoura'; break;
+      default: escolhaComputador = '';
     }
 
-    var resultado = '';
+    let resultado = '';
   
     if(escolhaComputador == 'pedra'){
       if(escolhaUsuario == 'pedra'){
@@ -74,7 +74,7 @@ class app3 extends Component {
       }
     }
 
-    this.setState({escolhaUsuario: escolhaUsuario, escolhaComputador: escolhaComputador, resultado: resultado});
+    this.setState({escolhaUsuario, escolhaComputador, resultado});
 
   }
 
